@@ -1,12 +1,12 @@
 import { IconButton, Box, VStack, Text, HStack, StackDivider, Spacer } from '@chakra-ui/react'
 import { Task } from '../task/Task'
 
-export const TaskList = () => {
+export const TaskList = ({taskList}) => {
   return (
     <VStack>
-        <Task />
-        <Task />
-        <Task />
+        {taskList.map((task, index)=>(
+            <Task key={index} task={task}/>
+        ))}
     </VStack>
   )
 }

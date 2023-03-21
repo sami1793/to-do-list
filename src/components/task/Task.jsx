@@ -1,10 +1,10 @@
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
-import { IconButton, Box, VStack, Text, HStack, StackDivider, Spacer } from '@chakra-ui/react'
-export const Task = () => {
+import { IconButton, Text, HStack, StackDivider, Spacer } from '@chakra-ui/react'
+export const Task = ({task}) => {
     return (
         <HStack bg='white' p={4} color='orange.800' w={400} borderRadius='xl'shadow='xs'
         borderBottomWidth={5} borderBottomColor='red.400' borderLeftWidth={5} borderLeftColor='red.400' >
-            <Text as='kbd' fontSize='xl'noOfLines={2}>Tarea de pruebad</Text>
+            <Text as={task.done?'del':''} fontSize='xl'noOfLines={2} >{task.title}</Text>
             <Spacer></Spacer>
             <HStack>
                 <IconButton
