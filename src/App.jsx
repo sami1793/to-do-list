@@ -12,6 +12,7 @@ const colorFuerte= 'orange.800'
 
 function App() {
   const inicialTasks = getLocalStorage('taskListStorage') || tasks;
+
   const [taskList, setTaskList] = useState(inicialTasks);
   const [taskInput, setTaskInput] = useState('');
 
@@ -22,7 +23,7 @@ function App() {
         <Box>
         <Form taskInput={taskInput} setTaskInput={setTaskInput} 
               taskList={taskList} setTaskList={setTaskList}/>
-        <TaskList taskList={taskList}/>
+        <TaskList taskList={taskList} setTaskList={setTaskList}/>
         </Box>
         
       </Container>
