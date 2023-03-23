@@ -30,13 +30,14 @@ export const Task = ({ task, taskList, setTaskList }) => {
 
     return (
         <HStack bg='white' p={4} color='orange.800' w={400} borderRadius='xl' shadow='xs'
-            borderBottomWidth={5} borderBottomColor='red.400' borderLeftWidth={5} borderLeftColor='red.400' >
+            borderBottomWidth={5} borderBottomColor='pink.400' borderLeftWidth={5} borderLeftColor='pink.400'
+            justify={'space-between'} alignItems='center'>
             <Text as={task.done ? 'del' : ''} fontSize='xl' noOfLines={2} >{task.title}</Text>
-            <Spacer></Spacer>
+            
             <HStack>
                 <IconButton
                     colorScheme='green'
-                    aria-label='Search database'
+                    aria-label='Check database'
                     icon={<CheckIcon />}
                     onClick={() => checkedTask(task.id)}
                 />
@@ -44,7 +45,7 @@ export const Task = ({ task, taskList, setTaskList }) => {
                     bg='red.400'
                     color='white'
                     _hover={{ bg: 'red.500' }}
-                    aria-label='Search database'
+                    aria-label='Delete database'
                     icon={<DeleteIcon />}
                     onClick={onOpen}
                 />
