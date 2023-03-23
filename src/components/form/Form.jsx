@@ -1,5 +1,5 @@
 import {
-    FormControl, Input, Box, FormErrorMessage, InputGroup, InputRightElement,
+    FormControl, Input, Box, FormErrorMessage, VStack, useToast,
     Button, HStack, Select
 } from '@chakra-ui/react'
 import { useState } from 'react';
@@ -9,7 +9,8 @@ import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
 
     const [filter, setFilter] = useState('todas');
-    const [isInvalidInput, setIsInvalidInput] = useState(false)
+    const [isInvalidInput, setIsInvalidInput] = useState(false);
+    const toast = useToast()
 
     const verifySetInput = (e) =>{
         if(e.target.value.length>0){
@@ -32,6 +33,13 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
             setTaskList(newTaskList);
             setLocalStorage('taskListStorage', newTaskList);
             setTaskInput('');
+            toast({
+                title: 'Tarea creada.',
+                description: "La tarea se agregó a la lista correctamente.",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+              })
         }
         else{
             setIsInvalidInput(true)
@@ -60,7 +68,7 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
     }
 
     return (
-        <Box maxW={400} bg='gray.200' p={3} mb={5}>
+        <VStack maxW={400} bg='white' spacing={5} mb={5}>
             <FormControl as='form' isInvalid={isInvalidInput&&true}>
                 <HStack>
                     <Input type='text' placeholder='Ingrese nueva tarea' bg='white' focusBorderColor='red.200'
@@ -78,8 +86,6 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
                     <option value='pendientes'>Pendientes</option>
                 </Select>
             </FormControl>
-
-
-        </Box>
+        </VStack>
     )
 }
