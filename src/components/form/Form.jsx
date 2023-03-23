@@ -3,9 +3,12 @@ import {
     Button, HStack, Select
 } from '@chakra-ui/react'
 import { useState } from 'react';
-import { setLocalStorage } from '../../utils/localStorage';
+
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 
 export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
+    
+    const [filter, setFilter] = useState('todas');
 
     const addTask = (e) => {
         e.preventDefault();
@@ -22,27 +25,26 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
         setTaskInput('');
     }
 
-    const [filter, setFilter] = useState('todas');
+    
 
-    // const filterTask = (e) => {
-    //     setFilter(e.target.value);
-    //     console.log(filter);
-    //     const copyTaskList = [...taskList]
-    //     let newTaskList
-    //     switch (filter) {
-    //         case 'completadas':
-    //             newTaskList = copyTaskList.filter((task) => task.done === true);
-    //             setTaskList(newTaskList);
-    //             break;
-    //         case 'pendientes':
-    //             newTaskList = copyTaskList.filter((task) => task.done === false);
-    //             setTaskList(newTaskList);
-    //             break;
-    //         default:
-    //             setTaskList(copyTaskList)
-
-    //     }
-    // }
+    const filterTask = (e) => {
+        setFilter(e.target.value);
+        const copyTaskList = getLocalStorage('taskListStorage')
+        let newTaskList
+        switch (e.target.value) {
+            case 'completadas':
+                newTaskList = copyTaskList.filter((task) => task.done === true);
+                setTaskList(newTaskList);
+                break;
+            case 'pendientes':
+                newTaskList = copyTaskList.filter((task) => task.done === false);
+                setTaskList(newTaskList);
+                break;
+            default:
+                setTaskList(copyTaskList)
+                break;
+        }
+    }
 
     return (
         <Box maxW={400} bg='gray.200' p={3} mb={5}>
@@ -57,7 +59,7 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
             </FormControl>
 
             <FormControl>
-                <Select bg={'white'} value={filter}>
+                <Select bg={'white'} value={filter} onChange={filterTask}>
                     <option value='todas'>Todas</option>
                     <option value='completadas'>Completadas</option>
                     <option value='pendientes'>Pendientes</option>
