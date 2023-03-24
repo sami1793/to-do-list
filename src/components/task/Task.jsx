@@ -1,20 +1,29 @@
 import React from 'react'
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons'
 import { IconButton, Text, HStack, Button, Spacer, AlertDialog, AlertDialogOverlay, 
-    AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, useDisclosure } from '@chakra-ui/react'
+    AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, useDisclosure, 
+    useToast, Flex } from '@chakra-ui/react'
 import { setLocalStorage } from '../../utils/localStorage'
 
 export const Task = ({ task, taskList, setTaskList }) => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const cancelRef = React.useRef()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const cancelRef = React.useRef();
+    const toast = useToast()
 
 
     const deleteTask = (id) => {
         onClose()
         const newTaskList = [...taskList].filter((task) => task.id != id);
         setTaskList(newTaskList);
-        setLocalStorage('taskListStorage', newTaskList)
+        setLocalStorage('taskListStorage', newTaskList);
+        toast({
+            title: 'Tarea eliminada.',
+            description: "La tarea fue eliminada de la lista.",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
     }
 
     const checkedTask = (id) => {
@@ -29,23 +38,27 @@ export const Task = ({ task, taskList, setTaskList }) => {
     }
 
     return (
-        <HStack bg='white' p={4} color='orange.800' w={400} borderRadius='xl' shadow='xs'
-            borderBottomWidth={5} borderBottomColor='pink.400' borderLeftWidth={5} borderLeftColor='pink.400'
+        <HStack bg='whiteAlpha.400' p={4} color='whiteAlpha.800' borderRadius='xl' shadow='xs' w='100%' h='12'
+            borderBottomWidth={3} borderBottomColor='blackAlpha.700' borderLeftWidth={3} borderLeftColor='blackAlpha.500'
             justify={'space-between'} alignItems='center'>
             <Text as={task.done ? 'del' : ''} fontSize='xl' noOfLines={2} >{task.title}</Text>
-            
             <HStack>
                 <IconButton
-                    colorScheme='green'
+                    colorScheme='pink'
                     aria-label='Check database'
+                    variant='solid'
+                    size='sm'
                     icon={<CheckIcon />}
                     onClick={() => checkedTask(task.id)}
                 />
                 <IconButton
-                    bg='red.400'
-                    color='white'
-                    _hover={{ bg: 'red.500' }}
-                    aria-label='Delete database'
+                    // bg='red.400'
+                    // color='white'
+                    // _hover={{ bg: 'red.500' }}
+                    // aria-label='Delete database'
+                    colorScheme='pink'
+                    variant='solid'
+                    size='sm'
                     icon={<DeleteIcon />}
                     onClick={onOpen}
                 />
