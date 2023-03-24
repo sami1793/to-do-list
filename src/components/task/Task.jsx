@@ -6,21 +6,21 @@ import {
     useToast, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Input
 } from '@chakra-ui/react'
 import { setLocalStorage } from '../../utils/localStorage'
-import { ModalDelete } from '../modal/modalDelete'
 
 export const Task = ({ task, taskList, setTaskList }) => {
 
-    const [inputEdit, setInputEdit] = useState('');
+    const [inputEdit, setInputEdit] = useState(task.title);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure();
     const cancelRef = React.useRef();
-    const toast = useToast()
+
+    const toast = useToast();
 
 
     const deleteTask = (id) => {
-        onClose()
-        const newTaskList = [...taskList].filter((task) => task.id != id);
+        onClose();
+        const newTaskList = taskList.filter((task) => task.id != id);
         setTaskList(newTaskList);
         setLocalStorage('taskListStorage', newTaskList);
         toast({
@@ -41,19 +41,25 @@ export const Task = ({ task, taskList, setTaskList }) => {
         setLocalStorage('taskListStorage', newTaskList);
     }
 
-    const editTask = (id) =>{
+    const editTask = (id) => {
         onEditClose();
-        const newTaskList = taskList.map((task)=>{
-            if(task.id==id) {task.title=inputEdit}
-            return task; 
+        const newTaskList = taskList.map((task) => {
+            if (task.id == id) { task.title = inputEdit }
+            return task;
         })
         setTaskList(newTaskList);
         setLocalStorage('taskListStorage', newTaskList);
-        console.log(id, inputEdit);
+        toast({
+            title: 'Tarea editada.',
+            description: "La tarea fue editada correctamente.",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+        })
     }
 
     return (
-        <HStack bg='whiteAlpha.400' p={4} color='whiteAlpha.800' borderRadius='xl' shadow='xs' w='100%' maxHeight='20'
+        <HStack bg='whiteAlpha.400' p={4} color='whiteAlpha.800' borderRadius='xl' w='100%' maxHeight='20'
             borderBottomWidth={3} borderBottomColor='blackAlpha.700' borderLeftWidth={3} borderLeftColor='blackAlpha.500'
             justify={'space-between'} alignItems='center'>
             <Text as={task.done ? 'del' : ''} fontSize='xl' noOfLines={2} >{task.title}</Text>
@@ -120,7 +126,7 @@ export const Task = ({ task, taskList, setTaskList }) => {
                             <ModalHeader>Editar Tarea</ModalHeader>
                             <ModalCloseButton />
                             <ModalBody pb={6}>
-                                <Input placeholder='Ingrese tarea' value={inputEdit} onChange={(e)=>setInputEdit(e.target.value)}/>
+                                <Input value={inputEdit} onChange={(e) => setInputEdit(e.target.value)} />
                             </ModalBody>
 
                             <ModalFooter>
