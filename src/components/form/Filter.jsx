@@ -1,5 +1,5 @@
 import { getLocalStorage} from '../../utils/localStorage';
-import { Button, FormControl, HStack, Select } from "@chakra-ui/react"
+import { Button, FormControl, HStack, Select, Stack } from "@chakra-ui/react"
 
 
 
@@ -23,15 +23,15 @@ export const Filter = ({filter, setFilter, setTaskList}) => {
         }
     }
     return (
-        <HStack w={'100%'} mt={5}>
+        <HStack w={'100%'} mt={5} gap={2}>
             <FormControl>
-                <Select bg={'whiteAlpha.100'} color='white' value={filter} onChange={filterTask}>
+                <Select bg={'whiteAlpha.100'} color='white' value={filter} onChange={filterTask} flexGrow='1'>
                     <option value='todas'>Todas</option>
                     <option value='completadas'>Completadas</option>
                     <option value='pendientes'>Pendientes</option>
                 </Select>
             </FormControl>
-            <Button paddingInline={8} colorScheme='blackAlpha'>Limpiar tareas</Button>
+            <Button paddingInline={8} colorScheme='blackAlpha' flexGrow='1'>Limpiar tareas</Button>
         </HStack>
     )
 }

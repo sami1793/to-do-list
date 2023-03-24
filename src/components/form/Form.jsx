@@ -1,7 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons';
 import {
     FormControl, Input, Box, FormErrorMessage, VStack, useToast,
-    Button, HStack
+    Button, HStack, Wrap, WrapItem, Flex, Text, Stack
 } from '@chakra-ui/react'
 import { useState } from 'react';
 
@@ -49,21 +49,20 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
 
 
     return (
-        <VStack maxW={400} spacing={5} mb={5}>
-            <FormControl as='form' isInvalid={isInvalidInput && true}>
-                <HStack alignItems={'center'}>
-                    <Input type='text' placeholder='Ingrese nueva tarea' bg='white' focusBorderColor=''
+            <FormControl as='form' isInvalid={isInvalidInput && true} w='100%' mb={5}>
+                <HStack justify='center' spacing={2} gap={2} >
+                    
+                    <Input type='text' placeholder='Ingrese nueva tarea' bg='white' 
                         value={taskInput} onChange={verifySetInput} />
                     
-                    <Button leftIcon={<AddIcon />} type='submit' color={'white'} bg={'pink.500'} _hover={{ bg: 'pink.600' }} variant='solid'paddingInline={8} onClick={addTask}>
+                    
+                    <Button leftIcon={<AddIcon />} type='submit'   color={'white'} bg={'pink.500'} _hover={{ bg: 'pink.600' }} paddingInline={5} onClick={addTask}>
                         Agregar
                     </Button>
-
+                    
                 </HStack>
                 <FormErrorMessage>El campo no puede estar vacío.</FormErrorMessage>
             </FormControl>
 
-
-        </VStack>
     )
 }

@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Box w='100vw' minH='100vh' p={4} bgGradient='linear(to-b, gray.700 5%, gray.700 90%)' >
-      <Container className='App' maxW='md' p={10} pt={5} borderRadius='2xl' borderWidth={3} >
+      <Container className='App' maxW='lg' p={10} pt={5} borderRadius='2xl' borderWidth={3} >
         <Heading as='h1' size='3xl' textAlign='center' color='whiteAlpha.900' mb={10} >
           <Text as='i' color='pink.400'>To Do </Text>
           <Text as='span'>List</Text>
