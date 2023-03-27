@@ -3,7 +3,7 @@ import { CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import {
     IconButton, Text, HStack, Button, AlertDialog, AlertDialogOverlay,
     AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, useDisclosure,
-    useToast, Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Input
+    useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Input
 } from '@chakra-ui/react'
 import { setLocalStorage } from '../../utils/localStorage'
 

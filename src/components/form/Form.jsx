@@ -1,9 +1,8 @@
 import { AddIcon } from '@chakra-ui/icons';
 import {
-    FormControl, Input, Box, FormErrorMessage, VStack, useToast,
-    Button, HStack, Wrap, WrapItem, Flex, Text, Stack
-} from '@chakra-ui/react'
+    FormControl, Input, Box, FormErrorMessage, useToast, Button, HStack} from '@chakra-ui/react'
 import { useState } from 'react';
+import { primaryColor } from '../../utils/colors';
 
 import { setLocalStorage } from '../../utils/localStorage';
 
@@ -59,7 +58,7 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
                         value={taskInput} onChange={verifySetInput} />
                     
                     
-                    <Button leftIcon={<AddIcon />} type='submit'   color={'white'} bg={'pink.500'} _hover={{ bg: 'pink.600' }} paddingInline={5} onClick={addTask}>
+                    <Button leftIcon={<AddIcon />} type='submit'   color={'white'} bg={primaryColor} _hover={{ bg: 'pink.600' }} paddingInline={5} onClick={addTask}>
                         Agregar
                     </Button>
                     
