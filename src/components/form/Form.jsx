@@ -11,7 +11,7 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
 
 
     const [isInvalidInput, setIsInvalidInput] = useState(false);
-    const toast = useToast()
+    const toast = useToast();
 
     const verifySetInput = (e) => {
         if (e.target.value.length > 0) {

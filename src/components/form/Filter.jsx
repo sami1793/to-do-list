@@ -1,9 +1,14 @@
 import { getLocalStorage, setLocalStorage} from '../../utils/localStorage';
-import { Button, FormControl, HStack, Select, Stack } from "@chakra-ui/react"
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, FormControl, HStack, Select, Stack, useDisclosure, useToast } from "@chakra-ui/react"
+import React from 'react';
 
 
 
 export const Filter = ({filter, setFilter, setTaskList}) => {
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const cancelRef = React.useRef();
+    const toast = useToast();
 
     const filterTask = (e) => {
         setFilter(e.target.value);
@@ -25,13 +30,20 @@ export const Filter = ({filter, setFilter, setTaskList}) => {
     }
 
     const clearTasks = () =>{
+        onClose();
         let newTaskList;
         setTaskList((taskList)=>{
             newTaskList = taskList.filter((task)=>task.done===false);
             return newTaskList;
         })
         setLocalStorage('taskListStorage', newTaskList)
-        console.log('funciona!!')
+        toast({
+            title: 'Tareas elimindas',
+            description: "Se limpiaron todas las tareas realizadas",
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+        })
     }
 
     return (
@@ -45,9 +57,36 @@ export const Filter = ({filter, setFilter, setTaskList}) => {
                 </Select>
             </FormControl>
             <Button paddingInline={8} colorScheme='blackAlpha' flexGrow='1'
-                    onClick={clearTasks}>
+                    onClick={onOpen}>
                 Limpiar tareas
             </Button>
+
+            <AlertDialog
+                    isOpen={isOpen}
+                    leastDestructiveRef={cancelRef}
+                    onClose={onClose}
+                >
+                    <AlertDialogOverlay>
+                        <AlertDialogContent>
+                            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                                Eliminar tareas completadas
+                            </AlertDialogHeader>
+
+                            <AlertDialogBody>
+                                ¿Está seguro de eliminar TODAS las tareas completadas? 
+                            </AlertDialogBody>
+
+                            <AlertDialogFooter>
+                                <Button ref={cancelRef} onClick={onClose}>
+                                    Cancelar
+                                </Button>
+                                <Button colorScheme='red' onClick={clearTasks} ml={3}>
+                                    Eliminar
+                                </Button>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialogOverlay>
+                </AlertDialog>
         </HStack>
     )
 }
