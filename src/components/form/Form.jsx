@@ -23,7 +23,10 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
     const addTask = (e) => {
         e.preventDefault();
         if (taskInput.length > 0) {
-            const newTaskId = taskList[taskList.length - 1]['id'] + 1;
+            let newTaskId;
+            taskList.length==0?newTaskId=1:
+            newTaskId = taskList[taskList.length - 1]['id'] + 1;
+            
             const newObjTask = {
                 id: newTaskId,
                 title: taskInput,
