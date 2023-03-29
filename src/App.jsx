@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Box w='100vw' minH='100vh' p={4} bgGradient='linear(to-b, gray.700 5%, gray.700 90%)' >
-      <Container className='App' maxW='lg' p={10} pt={5} borderRadius='2xl' borderWidth={3} >
+      <Container className='App' style={{position:'relative'}} maxW='lg' p={10} pt={5} mb={50} borderRadius='2xl' borderWidth={3} >
         <Heading as='h1' size='3xl' textAlign='center' color='whiteAlpha.900' mb={10} >
           <Text as='i' color={'pink.400'}>To Do </Text>
           <Text as='span'>List</Text>
@@ -30,7 +30,7 @@ function App() {
         </Box>
         <Filter filter={filter} setFilter={setFilter} setTaskList={setTaskList} />
       </Container>
-      <Box as='footer' color='white' p={5} textAlign='right'>Design with 💛 by <Text as='i'>Sami</Text></Box>
+      <Box as='footer' style={{bottom:0, right:10, position:'absolute'}} w='100%' color='white' p={5} textAlign='right'>Design with 💛 by <Text as='i'>Sami</Text></Box>
     </Box>
 
 
