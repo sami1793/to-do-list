@@ -52,13 +52,14 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
 
     return (
             <FormControl as='form' isInvalid={isInvalidInput && true} w='100%' mb={5}>
-                <HStack justify='center' spacing={2} gap={2} >
+                <HStack justify='center' spacing={2} gap={2} flexWrap={{base:'wrap', sm:'nowrap'}}>
                     
                     <Input type='text' placeholder='Ingrese nueva tarea' bg='white' 
-                        value={taskInput} onChange={verifySetInput} />
+                        value={taskInput} onChange={verifySetInput} flexGrow='1'/>
                     
                     
-                    <Button leftIcon={<AddIcon />} type='submit'   color={'white'} bg={primaryColor} _hover={{ bg: 'pink.600' }} paddingInline={5} onClick={addTask}>
+                    <Button leftIcon={<AddIcon />} type='submit'   color={'white'} bg={primaryColor} _hover={{ bg: 'pink.600' }} 
+                    paddingInline={5} flexGrow='1' onClick={addTask}>
                         Agregar
                     </Button>
                     

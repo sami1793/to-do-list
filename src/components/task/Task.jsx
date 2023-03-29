@@ -59,9 +59,9 @@ export const Task = ({ task, taskList, setTaskList }) => {
     }
 
     return (
-        <HStack bg='whiteAlpha.400' p={4} color='whiteAlpha.800' borderRadius='xl' w='100%' maxHeight='20'
+        <HStack bg='whiteAlpha.400' p={4} color='whiteAlpha.800' borderRadius='xl' w='100%'
             borderBottomWidth={3} borderBottomColor='blackAlpha.700' borderLeftWidth={3} borderLeftColor='blackAlpha.500'
-            justify={'space-between'} alignItems='center'>
+            justify={'space-between'} alignItems='center' flexDirection={{base:'column', sm:'row'}}>
             <Text as={task.done ? 'del' : ''} fontSize='xl' noOfLines={2} >{task.title}</Text>
             <HStack>
                 <IconButton

@@ -49,7 +49,7 @@ export const Filter = ({filter, setFilter, setTaskList}) => {
     }
 
     return (
-        <HStack w={'100%'} mt={5} gap={2}>
+        <HStack w={'100%'} mt={5} gap={2} flexWrap={{base:'wrap', sm:'nowrap'}}>
             <FormControl>
                 <Select bg={'whiteAlpha.100'} color='white' flexGrow='1'
                         value={filter} onChange={filterTask} >
