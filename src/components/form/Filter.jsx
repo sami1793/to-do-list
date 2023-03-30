@@ -34,10 +34,10 @@ export const Filter = ({filter, setFilter, setTaskList}) => {
     const clearTasks = () =>{
         onClose();
         let newTaskList;
-        setTaskList((taskList)=>{
-            newTaskList = taskList.filter((task)=>task.done===false);
-            return newTaskList;
-        })
+        const copyTaskList = getLocalStorage('taskListStorage');
+        newTaskList = copyTaskList.filter((task)=>task.done===false);
+        setTaskList(newTaskList);
+        setFilter('todas')
         setLocalStorage('taskListStorage', newTaskList)
         toast({
             title: 'Tareas elimindas',
