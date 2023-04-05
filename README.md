@@ -17,4 +17,4 @@ Para el estilado se utilizó el framework [Chakra UI](https://chakra-ui.com/)
 ## Deploy 🚀
 En el siguiente enlace podes comenzar a organizar tus tareas 🙌🏼:
 
-👉🏼 [To Do List](https://sami1793.github.io/ahorradas/)
+👉🏼 [To Do List](https://to-do-list-samii.vercel.app/)
