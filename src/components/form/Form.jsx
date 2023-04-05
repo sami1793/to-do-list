@@ -6,7 +6,7 @@ import { primaryColor } from '../../utils/colors';
 
 import { setLocalStorage } from '../../utils/localStorage';
 
-import './Filter.css'
+
 
 export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
 

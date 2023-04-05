@@ -4,7 +4,7 @@ import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter,
          useDisclosure, useToast } from "@chakra-ui/react"
 import React from 'react';
 
-
+import './Filter.css'
 
 export const Filter = ({filter, setFilter, setTaskList}) => {
 
