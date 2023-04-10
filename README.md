@@ -14,6 +14,7 @@ Para el estilado se utilizó el framework [Chakra UI](https://chakra-ui.com/)
 - `JavaScript`
 - `Chakra UI`
 ## Vista Previa 👀
+![](src/assets/vista.PNG)
 ## Deploy 🚀
 En el siguiente enlace podes comenzar a organizar tus tareas 🙌🏼:
 
