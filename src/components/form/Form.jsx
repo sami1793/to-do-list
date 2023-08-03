@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { primaryColor } from "../../utils/colors";
 
-import { setLocalStorage } from "../../utils/localStorage";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 
 export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
   const [isInvalidInput, setIsInvalidInput] = useState(false);
@@ -23,8 +23,10 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
     setTaskInput(e.target.value);
   };
 
+  //AGREGAR TAREA
   const addTask = (e) => {
     e.preventDefault();
+    const localStorageTaskList = getLocalStorage("taskListStorage");
     if (taskInput.length > 0) {
       let newTaskId;
       taskList.length == 0
@@ -39,7 +41,7 @@ export const Form = ({ taskInput, setTaskInput, taskList, setTaskList }) => {
       const newTaskList = [...taskList, newObjTask];
 
       setTaskList(newTaskList);
-      setLocalStorage("taskListStorage", newTaskList);
+      setLocalStorage("taskListStorage", [...localStorageTaskList, newObjTask]);
       setTaskInput("");
       toast({
         title: "Tarea creada.",
